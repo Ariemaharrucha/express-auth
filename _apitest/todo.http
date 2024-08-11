@@ -1,0 +1,23 @@
+GET http://localhost:8000/todoapps/api/v1/todo
+
+### add
+POST http://localhost:8000/todoapps/api/v1/todo
+Content-Type: application/json
+
+{
+    "userId": "66b8a0107ae867ea8993667a",
+    "todo": "memakan nasi",
+    "date": "2024-08-10"
+}
+
+### update
+PUT http://localhost:8000/todoapps/api/v1/todo/
+Content-Type: application/json
+
+{
+
+}
+
+### delete
+DELETE url HTTP/1.1 http://localhost:8000/todoapps/api/v1/todo/
+Content-Type: application/json

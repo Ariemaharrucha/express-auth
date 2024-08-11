@@ -1,0 +1,28 @@
+### login
+POST http://localhost:8000/todoapps/api/v1/user/login
+Content-Type: application/json
+
+{
+    "email": "kaizer@gmail.com",
+    "password": "sekolahan"
+}
+###
+GET http://localhost:8000/todoapps/api/v1/user
+
+### add
+POST http://localhost:8000/todoapps/api/v1/user
+Content-Type: application/json
+
+{
+    "name": "kaizer",
+    "email": "kaizer@gmail.com",
+    "password": "sekolahan"
+}
+
+### update
+PUT http://localhost:8000/todoapps/api/v1/user/
+Content-Type: application/json
+
+### delete
+DELETE http://localhost:8000/todoapps/api/v1/user/66ae4ef71b948111f11e63ae
+
