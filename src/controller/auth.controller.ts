@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import userServices from "../services/auth.service";
+import authServices from "../services/auth.service";
 import { User } from "../models/user.schema";
 import { IUser } from "../types/entity";
 
 
-const userController = {
+const authController = {
   handleGetUser: async (req: Request, res: Response) => {
     try {
-      const allUser = await userServices.getUser();
+      const allUser = await authServices.getUser();
       return res.status(200).json({ data: allUser });
     } catch (error) {
       res.status(404).json({ message: "senter" });
@@ -33,7 +33,7 @@ const userController = {
         return res.status(404).json({ message: "email sudah digunakan" });
       }
 
-      const saveUser = await userServices.insertUser({ name, email, password });
+      const saveUser = await authServices.insertUser({ name, email, password });
 
       return res.status(201).json({ data: saveUser });
     } catch (error) {
@@ -45,7 +45,7 @@ const userController = {
     const { name, email, password } = req.body as IUser;
     const userId = req.params.id;
     try {
-      const updateUser = await userServices.updateUser(userId, {
+      const updateUser = await authServices.updateUser(userId, {
         name,
         email,
         password,
@@ -60,7 +60,7 @@ const userController = {
   handleDeleteUser: async (req: Request, res: Response) => {
     const userId = req.params.id;
     try {
-      const result = await userServices.deleteUser(userId);
+      const result = await authServices.deleteUser(userId);
       return res
         .status(201)
         .json({ message: "user berhasil di hapus", data: result });
@@ -71,7 +71,7 @@ const userController = {
 
   handleLogin: async (req: Request, res: Response) => {
     try {
-      const resultLogin = await userServices.login(req.body);
+      const resultLogin = await authServices.login(req.body);
       return res
         .cookie("accessToken", resultLogin?.accessToken, { httpOnly: true })
         .cookie("refreshToken", resultLogin?.refreshToken, { httpOnly: true })
@@ -87,7 +87,7 @@ const userController = {
     try {
       const {refreshToken} = req.cookies;
 
-      await userServices.logOut(refreshToken);
+      await authServices.logOut(refreshToken);
       res.status(200).json({message: "logout succes"})
     } catch (error) {
       res.json({message: "logout error"})
@@ -95,4 +95,4 @@ const userController = {
   },
 };
 
-export default userController;
+export default authController;

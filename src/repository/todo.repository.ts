@@ -4,7 +4,7 @@ import { ITodo } from "../types/entity";
 const todoRepository = {
   getTodo: async () => {
     try {
-      const allTodo = await Todo.find().populate("User");
+      const allTodo = await Todo.find().populate("userId");
       return allTodo;
     } catch (error) {
       console.error(error);
@@ -30,9 +30,10 @@ const todoRepository = {
 
   updateTodo: async (todoId: string, dataTodo: ITodo) => {
     try {
+      const {todo, date} = dataTodo
       const updateTodo = await Todo.findByIdAndUpdate(
         { _id: todoId },
-        { dataTodo },
+        { todo, date },
         { new: true }
       );
       return updateTodo;

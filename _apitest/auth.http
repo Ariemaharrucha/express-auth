@@ -10,7 +10,7 @@ Content-Type: application/json
 GET http://localhost:8000/todoapps/api/v1/user
 
 ### add
-POST http://localhost:8000/todoapps/api/v1/user
+POST http://localhost:8000/todoapps/api/v1/user/
 Content-Type: application/json
 
 {
@@ -20,9 +20,14 @@ Content-Type: application/json
 }
 
 ### update
-PUT http://localhost:8000/todoapps/api/v1/user/
+PUT http://localhost:8000/todoapps/api/v1/user/66b97e3c4ebd031df4052feb
 Content-Type: application/json
 
-### delete
-DELETE http://localhost:8000/todoapps/api/v1/user/66ae4ef71b948111f11e63ae
+{
+    "name": "kaizer r3",
+    "email": "kaizer@gmail.com",
+    "password": "sekolahan"
+}
 
+### delete
+DELETE http://localhost:8000/todoapps/api/v1/user/66b8a0107ae867ea8993667a

@@ -5,19 +5,18 @@ POST http://localhost:8000/todoapps/api/v1/todo
 Content-Type: application/json
 
 {
-    "userId": "66b8a0107ae867ea8993667a",
+    "userId": "66b97e3c4ebd031df4052feb",
     "todo": "memakan nasi",
     "date": "2024-08-10"
 }
 
 ### update
-PUT http://localhost:8000/todoapps/api/v1/todo/
+PUT http://localhost:8000/todoapps/api/v1/todo/66b8dbf7c829fe454b68bd50
 Content-Type: application/json
 
 {
-
+    "todo": "makan ayam"
 }
 
 ### delete
-DELETE url HTTP/1.1 http://localhost:8000/todoapps/api/v1/todo/
-Content-Type: application/json
+DELETE http://localhost:8000/todoapps/api/v1/todo/66b8d95196082f56ee34ec23

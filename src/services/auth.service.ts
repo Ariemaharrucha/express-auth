@@ -1,11 +1,11 @@
-import userRepository from "../repository/auth.repository";
+import authRepository from "../repository/auth.repository";
 import { User } from "../models/user.schema";
 import { IAuth, IUser } from "../types/entity";
 
-const userServices = {
+const authServices = {
   getUser: async () => {
     try {
-      const allUser = await userRepository.getUser();
+      const allUser = await authRepository.getUser();
       return allUser;
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ const userServices = {
     }
 
     try {
-      const saveUser = await userRepository.createUser({
+      const saveUser = await authRepository.createUser({
         name,
         email,
         password,
@@ -46,7 +46,7 @@ const userServices = {
     const { name, email, password } = dataUser;
 
     try {
-      const updateUser = await userRepository.updateUser(userId, {
+      const updateUser = await authRepository.updateUser(userId, {
         name,
         email,
         password,
@@ -59,7 +59,7 @@ const userServices = {
 
   deleteUser: async (userId: string) => {
     try {
-      const userDelete = await userRepository.deleteUser(userId);
+      const userDelete = await authRepository.deleteUser(userId);
       return userDelete;
     } catch (error) {
       console.log(error);
@@ -73,7 +73,7 @@ const userServices = {
         throw new Error("email dan password harus di isi");
       }
 
-      const login = await userRepository.login({email, password});
+      const login = await authRepository.login({email, password});
       return login;
     } catch (error) {
       console.error(error);
@@ -82,7 +82,7 @@ const userServices = {
 
   logOut: async (refershToken:string) => {
     try {
-      const logOut = await userRepository.logOut(refershToken);
+      const logOut = await authRepository.logOut(refershToken);
       return logOut
     } catch (error) {
       console.error(error);
@@ -91,4 +91,4 @@ const userServices = {
   }
 };
 
-export default userServices;
+export default authServices;

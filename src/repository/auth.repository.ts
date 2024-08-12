@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Auth } from "../models/auth.schema";
 
-const userRepository = {
+const authRepository = {
   getUser: async () => {
     try {
       const allUser = await User.find();
@@ -19,7 +19,7 @@ const userRepository = {
     try {
       const { name, email, password } = dataUser;
 
-      const hashPassword = await bcrypt.hash(password, 10);
+      const hashPassword = await bcrypt.hash(password, 13);
       const newUser = new User({
         name,
         email,
@@ -35,10 +35,14 @@ const userRepository = {
   },
 
   updateUser: async (userId: string, dataUser: IUser) => {
+
     try {
+      const {name, email, password} = dataUser;
+
+      const hashPassword = await bcrypt.hash(password, 13)
       const updateUser = await User.findByIdAndUpdate(
         { _id: userId },
-        { dataUser },
+        { name, email, password: hashPassword },
         { new: true }
       );
 
@@ -100,7 +104,7 @@ const userRepository = {
         payload,
         process.env.JWT_REFRESH_SECRET as string,
         {
-          expiresIn: 100,
+          expiresIn: 350,
         }
       );
 
@@ -127,4 +131,4 @@ const userRepository = {
   },
 };
 
-export default userRepository;
+export default authRepository;
