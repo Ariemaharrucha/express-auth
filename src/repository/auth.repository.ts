@@ -104,7 +104,7 @@ const authRepository = {
         payload,
         process.env.JWT_REFRESH_SECRET as string,
         {
-          expiresIn: 350,
+          expiresIn: 900,
         }
       );
 
